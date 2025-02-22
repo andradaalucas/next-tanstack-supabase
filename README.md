@@ -24,6 +24,12 @@ This project fetches and displays a list of countries from a Supabase database u
    2. Create a countries table with at least id (integer) and name (text) columns.
    3. Add some sample data (e.g., { id: 1, name: "Argentina" }).
    4. Copy your Supabase URL and Anon Key into a .env.local file
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
 4. **Insert table and fill**
 
 Execute this command in SQL Editor from supabase.
@@ -40,11 +46,6 @@ values
 (1, 'United Kingdom'),
 (2, 'United States'),
 (3, 'Singapore');
-```
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
 # Benefits
