@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next + Tanstack + Supabase
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), integrated with Supabase and Tanstack to display a list of countries.
+
+## What It Does
+
+This project fetches and displays a list of countries from a Supabase database using Next.js App Router and TanStack Query. It uses server components for initial data loading and client components for dynamic updates. The original functionality to create new countries has been removed, focusing only on the retrieval and rendering of the list, the idea is to make a boilerplate for anyone to use as initial configuration.
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/andradaalucas/next-tanstack-supabase.git
+   cd next-tanstack-supabase
+
+   ```
+
+2. **Install dependencies**:
+   `npm install  `
+
+3. **Set up Supabase**:
+   1. Create a Supabase project at supabase.com.
+   2. Create a countries table with at least id (integer) and name (text) columns.
+   3. Add some sample data (e.g., { id: 1, name: "Argentina" }).
+   4. Copy your Supabase URL and Anon Key into a .env.local file
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Benefits
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A brief list of advantages when combining TanStack Query with Server Components in Next.js:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **SSR + Dynamic Updates**: Fast initial render from the server, with client-side updates via TanStack Query (e.g., `initialData` in `PostsList`).
+- **Efficient Caching**: Hydrates cache with server data, avoiding redundant fetches (e.g., `initialPosts`).
+- **Real-Time Made Easy**: Supports real-time updates with Supabase Realtime and query invalidation (e.g., `invalidateQueries(['countries'])`).
+- **Enhanced State**: Adds `isLoading`, `isError`, and `data` for better UX, even with server fetch.
+- **Lower Initial Latency**: Server fetch reduces load time vs. client-only (e.g., `getCountriesServer`).
+- **Resource Control**: Manages refetch timing with `staleTime` or `cacheTime` (e.g., 5 minutes).
+- **Scalable**: Easily extends to mutations or more queries without restructuring.
 
-## Learn More
+## Comparison
 
-To learn more about Next.js, take a look at the following resources:
+- **Server-Only**: Simple, SEO-friendly, no dynamic updates.
+- **Client-Only TanStack**: Interactive, but slower initial load and weaker SEO.
+- **Hybrid (Server + TanStack)**: Combines SSR speed with client dynamism.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Conclusion
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This hybrid approach offers fast loads, SEO, and dynamic updates, ideal for balanced performance and interactivity.
